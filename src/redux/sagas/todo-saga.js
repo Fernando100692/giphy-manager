@@ -2,7 +2,6 @@
 import {
     put,
     call,
-    takeLatest,
     takeEvery
   } from 'redux-saga/effects';
   
@@ -18,7 +17,9 @@ import {
     GET_ONE_BY_TRANSLATE,
     GET_ONE_BY_TRANSLATE_REQUESTED,
     SET_ONE_FAVORITE,
-    SET_ONE_FAVORITE_REQUESTED
+    SET_ONE_FAVORITE_REQUESTED,
+    REMOVE_ONE_FAVORITE,
+    REMOVE_ONE_FAVORITE_REQUESTED
   } from '../actions/todo-action';
   
   // API's
@@ -69,6 +70,11 @@ import {
   function* setOneFav({ payload }) {
     yield put({ type: SET_ONE_FAVORITE, payload })
   }
+
+  // Remove one Gif from my saved Gifs
+  function* removeOneFav({ payload }) {
+    yield put({ type: REMOVE_ONE_FAVORITE, payload })
+  }
   
   export default function* todoSaga() {
     yield takeEvery(GET_ALL_BY_SEARCH_REQUESTED, getAllSearch);
@@ -76,4 +82,5 @@ import {
     yield takeEvery(GET_ONE_BY_RANDOM_REQUESTED, getRandom);
     yield takeEvery(GET_ONE_BY_TRANSLATE_REQUESTED, getTranslate);
     yield takeEvery(SET_ONE_FAVORITE_REQUESTED, setOneFav);
+    yield takeEvery(REMOVE_ONE_FAVORITE_REQUESTED, removeOneFav);
   };

@@ -4,7 +4,8 @@ import {
     GET_ONE_BY_RANDOM,
     GET_ONE_BY_TRANSLATE,
     GET_ALL_BY_TRENDING,
-    SET_ONE_FAVORITE
+    SET_ONE_FAVORITE,
+    REMOVE_ONE_FAVORITE
   } from '../actions/todo-action';
   
   // Reducer state
@@ -50,6 +51,12 @@ import {
         return {
           ...state,
           savedGifs: [payload, ...state.savedGifs]
+        }
+      // Remove one GIF from my saved Gifs
+      case REMOVE_ONE_FAVORITE:
+        return {
+          ...state,
+          savedGifs: state.savedGifs.filter(elm => elm.id !== payload.id),
         }
       default:
         return state

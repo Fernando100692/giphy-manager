@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 // Redux Actions
 import {
-  SET_ONE_FAVORITE_REQUESTED
+  REMOVE_ONE_FAVORITE_REQUESTED,
 } from '../../redux/actions/todo-action';
 
 // View
@@ -14,7 +14,7 @@ export const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  setOneFavorite: (payload) => dispatch({ type: SET_ONE_FAVORITE_REQUESTED, payload }),
+  removeOneFavorite: (payload) => dispatch({ type: REMOVE_ONE_FAVORITE_REQUESTED, payload }),
 })
 
 export default connect(

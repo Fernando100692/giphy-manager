@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 // Assets
 import logo from '../../assets/logo.webp';
@@ -28,7 +29,6 @@ const GiphyHome = (
     const [dataResult, setDataResult] = useState([]);
     const [isRandom, setIsRandom] = useState(false);
     const navigate = useNavigate();
-
 
     const onGetRequestType = () => {
         if (isRandom) { // if random option is active
@@ -72,6 +72,7 @@ const GiphyHome = (
     // Add another gif to saved gifs
     const onAddGif = (itm) => {
         setOneFavorite(itm);
+        toast("✅ New saved GIF!");
     };
 
     // Is watching when the data and loading are changing
@@ -140,6 +141,7 @@ const GiphyHome = (
                     )
                 })}
             </div>
+            <ToastContainer hideProgressBar={true} autoClose={1000} />
         </div>
     );
 }

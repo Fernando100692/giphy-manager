@@ -1,35 +1,26 @@
 // Dependencies
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // Assets
-import logo from '../../assets/logo.webp';
-import like from '../../assets/like.png';
-import unlike from '../../assets/unlike.png';
+import trash from '../../assets/trash.png';
 
 const MySavedGifs = (
     {
-        setOneFavorite,
-        savedGifs
+        savedGifs,
+        removeOneFavorite
     }
 ) => {
     const navigate = useNavigate();
 
-    // Add another gif to saved gifs
-    const onAddGif = (itm) => {
-        setOneFavorite(itm);
+    // Remove gif from saved gifs
+    const onRemoveGif = (itm) => {
+        removeOneFavorite(itm);
     };
 
+    // Navigate to previous page
     const onGoBack = () => navigate(-1);
-
-    useEffect(() => {
-        // onSearch();
-    }, []);
-
-    // console.log('LOS RESULTADOS', onGetRequestType(), dataResult , 'savedGifs', savedGifs);
-
-    const validateInFav = (id) => savedGifs?.some(elm => elm?.id === id);
 
     return (
         <div className="flex justify-center">
@@ -58,7 +49,7 @@ const MySavedGifs = (
                                 <img className="rounded-t-lg h-[150px] object-cover" alt={itm?.title} src={itm?.images?.fixed_height?.url}/>
                             </div>
                             <div className="px-2 mt-2 flex flex-row justify-end">
-                                <img onClick={() => onAddGif(itm)} className="cursor-pointer" src={validateInFav(itm?.id) ? like:unlike} alt="logo" width={20}/>
+                                <img onClick={() => onRemoveGif(itm)} className="cursor-pointer" src={trash} alt="logo" width={17}/>
                             </div>
                             <div className="p-2">
                                 <h6 className="text-gray-900 text-xs font-medium mb-2">{itm?.title}</h6>
@@ -75,7 +66,7 @@ const MySavedGifs = (
 }
 
  MySavedGifs.propTypes = {
-    setOneFavorite: PropTypes.func.isRequired,
+    removeOneFavorite: PropTypes.func.isRequired,
     savedGifs: PropTypes.array.isRequired,
  };
 

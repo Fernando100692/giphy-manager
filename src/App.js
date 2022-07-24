@@ -1,6 +1,7 @@
 // Dependencies
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
 // Containers
