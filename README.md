@@ -2,10 +2,37 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Technologies and tools used
+
+* `Javascript`
+* `React`
+* `State Management: Redux-Saga with Redux-Persist` 
+* `Redux-devtools-extension`
+* `React-router v6`
+* `TailwindCss`
+* `Axios`
+* `React testing library`
+
+* Some tests were implemented into components folder for both two components (BodyListLayout and NavLayout).
+
+## Project Structure (Folders)
+
+* `api`: It contains the functions with the requests to the services.
+* `assets`: It contains all assets (images, icons).
+* `components`: It contains the reusable components for app.
+* `config`: It contains the endpoints config and lists.
+* `containers`: It contains the containers components for app such as router containers, big layouts, and others.
+* `pages`: It contains general views o pages for app.
+* `redux`: It contains all about redux config and is composed by actions, reducers and sagas of the app.
+
+
 ## Available Scripts
 
 In the project directory, you can run:
 
+### `npm install`
+
+Install all node modules.\
 ### `npm start`
 
 Runs the app in the development mode.\

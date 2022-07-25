@@ -13,10 +13,10 @@ const BodyListLayout = ({ title, totalGifs, imagesList, onClickIcon, iconSrc, ic
             return (
                 <div key={`${itm.id}-${idx}`} className="mt-2 rounded-lg shadow bg-white w-[200px]">
                     <div className="flex flex-col">
-                        <img className="rounded-t-lg h-[150px] object-cover" alt={itm?.title} src={itm?.images?.fixed_height?.url}/>
+                        <img data-testid="gif-element" className="rounded-t-lg h-[150px] object-cover" alt={itm?.title} src={itm?.images?.fixed_height?.url}/>
                     </div>
                     <div className="px-2 mt-2 flex flex-row justify-end">
-                        <img onClick={() => onClickIcon(itm)} className="cursor-pointer" src={iconSrc(itm)} alt="logo" width={iconSize}/>
+                        <img data-testid="icon-element" onClick={() => onClickIcon(itm)} className="cursor-pointer" src={iconSrc(itm)} alt="logo" width={iconSize}/>
                     </div>
                     <div className="p-2">
                         <h6 className="text-gray-900 text-xs font-medium mb-2">{itm?.title}</h6>
