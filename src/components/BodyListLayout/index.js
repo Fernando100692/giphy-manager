@@ -11,7 +11,7 @@ const BodyListLayout = ({ title, totalGifs, imagesList, onClickIcon, iconSrc, ic
         </div>
         {imagesList?.map((itm, idx) => {
             return (
-                <div key={`${itm.id}-${idx}`} className="mt-2 rounded-lg shadow-lg bg-white w-[200px]">
+                <div key={`${itm.id}-${idx}`} className="mt-2 rounded-lg shadow bg-white w-[200px]">
                     <div className="flex flex-col">
                         <img className="rounded-t-lg h-[150px] object-cover" alt={itm?.title} src={itm?.images?.fixed_height?.url}/>
                     </div>

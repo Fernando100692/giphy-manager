@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import ReactPaginate from 'react-paginate';
 
 // Components
 import NavLayout from '../../components/NavLayout';
@@ -33,6 +34,7 @@ const GiphyHome = (
 
     const [searchText, setSearchText] = useState(text || '');
     const [dataResult, setDataResult] = useState([]);
+    const [activePage, setActivePage] = useState(0)
     const [isRandom] = useState(false);
     const navigate = useNavigate();
 
@@ -59,19 +61,20 @@ const GiphyHome = (
     };
 
     // Call the respective endpoint for each case
-    const onSearch = () => {
+    const onSearch = (offset = 0) => {
         const currentType = onGetRequestType();
         switch (currentType) {
             case 'random':  
                 getOneByRandom({tag: searchText});
                 break;
             case 'trending':
-                getAllByTrendig({rating: 'g'});
+                getAllByTrendig({rating: 'g', offset});
                 break;
             default:
-                getAllBySearch({q: searchText});
+                getAllBySearch({q: searchText, offset});
                 break;
         }
+        setActivePage(0);
         setSearchParams({type: currentType, text: searchText});
     };
 
@@ -96,12 +99,18 @@ const GiphyHome = (
         onSearch();
     }, []);
 
-    console.log('LOS RESULTADOS', onGetRequestType(), dataResult , 'savedGifs', savedGifs);
+    const handlePageClick = (event) => {
+        const newOffset = (25 * event.selected);
+        setActivePage(event.selected, onSearch(newOffset));
+    };
 
-    const validateInFav = (id) => savedGifs?.some(elm => elm?.id === id);
+    const validateInFav = (id) => savedGifs?.some(elm => elm?.id === id); // Validate if element exists in favorites
+
+    const totalElements = dataResult?.pagination?.total_count;
+    const totalPagesNumber = !(totalElements % 25) ? (totalElements / 25):(Math.ceil(totalElements / 25)); //total of pages for paginator
 
     return (
-        <div className="flex justify-center">
+        <div className="flex flex-col items-center justify-center">
             <NavLayout 
                 left={
                     <img src={logo} alt="logo" width={150}/>
@@ -135,12 +144,34 @@ const GiphyHome = (
             />
             <BodyListLayout 
                 title={text || 'Trending'}
-                totalGifs={dataResult?.pagination?.total_count}
+                totalGifs={totalElements}
                 imagesList={dataResult?.data}
                 onClickIcon={(itm) => !validateInFav(itm?.id) ? onAddGif(itm):onRemoveGif(itm)}
                 iconSrc={(itm) => validateInFav(itm?.id) ? like:unlike}
                 iconSize={20}
             />
+            <div className="w-full flex justify-center mb-10">
+                <ReactPaginate
+                    forcePage={activePage}
+                    nextLabel="next >"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={5}
+                    pageCount={totalPagesNumber}
+                    previousLabel="< previous"
+                    renderOnZeroPageCount={null}
+                    pageClassName="page-item"
+                    pageLinkClassName="page-link"
+                    previousClassName="page-item"
+                    previousLinkClassName="page-link"
+                    nextClassName="page-item"
+                    nextLinkClassName="page-link"
+                    breakLabel="..."
+                    breakClassName="page-item"
+                    breakLinkClassName="page-link"
+                    containerClassName="pagination"
+                    activeClassName="active"
+                />
+            </div>
             <ToastContainer hideProgressBar={true} autoClose={1000} />
         </div>
     );

@@ -1,6 +1,6 @@
 
-const giphyApiBaseUrl = 'http://api.giphy.com/v1';
-const api_key = 'WnTEYVz8yJSXIH1ZF4mLgRF33Ey4oC1g';
+const giphyApiBaseUrl = process.env.REACT_APP_API_AUTH_BASE_URL;
+const api_key = process.env.REACT_APP_API_KEY;
 const type = 'gifs'; // Can be gifs or stickers
 
 const onGetUrlEndpoint = (category) => {
