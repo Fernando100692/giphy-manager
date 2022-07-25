@@ -8,9 +8,11 @@ const onGetUrlEndpoint = (category) => {
     return customUrl;
 };
 
-export default {
+const endpoints = {
     search: onGetUrlEndpoint('search'),
     random: onGetUrlEndpoint('random'),
     translate: onGetUrlEndpoint('translate'),
     trending: onGetUrlEndpoint('trending')
-}
+};
+
+export default endpoints;

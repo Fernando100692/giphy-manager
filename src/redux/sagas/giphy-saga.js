@@ -20,7 +20,7 @@ import {
     SET_ONE_FAVORITE_REQUESTED,
     REMOVE_ONE_FAVORITE,
     REMOVE_ONE_FAVORITE_REQUESTED
-  } from '../actions/todo-action';
+  } from '../actions/giphy-action';
   
   // API's
   import {
@@ -28,7 +28,7 @@ import {
     getAllbyTrending,
     getByRandom,
     getByTranslate
-  } from '../../api/todo-api';
+  } from '../../api/giphy-api';
   
   // Get All Gifs by Search method
   function* getAllSearch({ payload }) {
@@ -76,7 +76,7 @@ import {
     yield put({ type: REMOVE_ONE_FAVORITE, payload })
   }
   
-  export default function* todoSaga() {
+  export default function* giphySaga() {
     yield takeEvery(GET_ALL_BY_SEARCH_REQUESTED, getAllSearch);
     yield takeEvery(GET_ALL_BY_TRENDING_REQUESTED, getAllTrending);
     yield takeEvery(GET_ONE_BY_RANDOM_REQUESTED, getRandom);

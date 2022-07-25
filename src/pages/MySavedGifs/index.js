@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 // Redux Actions
 import {
   REMOVE_ONE_FAVORITE_REQUESTED,
-} from '../../redux/actions/todo-action';
+} from '../../redux/actions/giphy-action';
 
 // View
 import View from './MySavedGifs';

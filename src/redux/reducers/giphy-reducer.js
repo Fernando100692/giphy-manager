@@ -2,11 +2,10 @@ import {
     SET_LOADING,
     GET_ALL_BY_SEARCH,
     GET_ONE_BY_RANDOM,
-    GET_ONE_BY_TRANSLATE,
     GET_ALL_BY_TRENDING,
     SET_ONE_FAVORITE,
     REMOVE_ONE_FAVORITE
-  } from '../actions/todo-action';
+  } from '../actions/giphy-action';
   
   // Reducer state
   const initialState = {
@@ -16,8 +15,7 @@ import {
     savedGifs: []
   };
   
-  const todoReducer = (state = initialState, {type, payload}) => {
-    console.log('ÁJAAAAAAAAA', state, type, payload);
+  const giphyReducer = (state = initialState, {type, payload}) => {
     switch(type) {
       // Set loading
       case SET_LOADING:
@@ -63,4 +61,4 @@ import {
     };
   };
 
-  export default todoReducer;
+  export default giphyReducer;

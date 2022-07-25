@@ -7,8 +7,9 @@ import {
   GET_ALL_BY_TRENDING_REQUESTED,
   GET_ONE_BY_RANDOM_REQUESTED,
   GET_ONE_BY_TRANSLATE_REQUESTED,
-  SET_ONE_FAVORITE_REQUESTED
-} from '../../redux/actions/todo-action';
+  SET_ONE_FAVORITE_REQUESTED,
+  REMOVE_ONE_FAVORITE_REQUESTED
+} from '../../redux/actions/giphy-action';
 
 // View
 import View from './GiphyHome';
@@ -26,6 +27,7 @@ const mapDispatchToProps = (dispatch) => ({
   getOneByRandom: (payload) => dispatch({ type: GET_ONE_BY_RANDOM_REQUESTED, payload }),
   getOneByTranslate: (payload) => dispatch({ type: GET_ONE_BY_TRANSLATE_REQUESTED, payload }),
   setOneFavorite: (payload) => dispatch({ type: SET_ONE_FAVORITE_REQUESTED, payload }),
+  removeOneFavorite: (payload) => dispatch({ type: REMOVE_ONE_FAVORITE_REQUESTED, payload }),
 })
 
 export default connect(
