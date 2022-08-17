@@ -113,7 +113,7 @@ const GiphyHome = (
         <div className="flex flex-col items-center justify-center">
             <NavLayout 
                 left={
-                    <img src={logo} alt="logo" width={150}/>
+                    <div />
                 }
                 center={
                     <div className="flex flex-row justify-center w-1/2">
